@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse,Http404,HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from .forms import NewCommentForm, Profileform
+from .models import Profile
 
 def home(request):
     return render(request,'projects/home.html')
