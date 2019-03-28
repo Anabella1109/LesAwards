@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse,Http404,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .forms import NewCommentForm, Profileform
-from .models import Profile
+from .forms import NewCommentForm, Profileform, Projectform
+from .models import Profile, Project
 from django.contrib.auth.models import User
 
 def home(request):
@@ -41,6 +41,23 @@ def edit_profile(request,edit):
     else:
         form = Profileform()
     return render(request, 'edit_profile.html', {"form": form , 'user':current_user})
+
+
+@login_required(login_url='/accounts/login/')
+def new_article(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = Projectform(request.POST, request.FILES)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.user = current_user
+            project.save()
+        return redirect('home')
+
+    else:
+        form = Projectform()
+    return render(request, 'new_project.html', {"form": form})
+
 
 
 
