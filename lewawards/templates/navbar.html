@@ -12,7 +12,7 @@
       <a class="navbar-brand" href="{% url 'home' %}" style="font-family: billabong;font-size:40px;color:black;">Les Awards</a>
     </div>
     <div class="navbar-right text-center" style="margin:0 auto;">
-    
+
   </div>
     <div class="d-block">
         {% if user.is_authenticated %}
@@ -33,7 +33,9 @@
                 <li>
                     <a href="{%url 'edit_profile' user.id %}">Edit Profile</a>
                   </li>
-            
+              <li>
+                <a href="{%url 'new-project'%}">Add Project</a>
+              </li>
               <li>
                 <a href="/accounts/password/change">Change Password</a>
               </li>

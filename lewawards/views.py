@@ -44,7 +44,7 @@ def edit_profile(request,edit):
 
 
 @login_required(login_url='/accounts/login/')
-def new_article(request):
+def new_project(request):
     current_user = request.user
     if request.method == 'POST':
         form = Projectform(request.POST, request.FILES)
