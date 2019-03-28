@@ -18,4 +18,11 @@ def update_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
     instance.profile.save()
+
+class Project(models.Model):
+      name=models.CharField(max_length=100,null=True)
+      screenshot=models.ImageField(upload_to='projects/',default='images/avatar.jpg')
+      description=models.TextField(null=True)
+      url=models.TextField(null=True)
+      user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
 # Create your models here.

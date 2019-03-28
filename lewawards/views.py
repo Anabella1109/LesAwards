@@ -32,6 +32,7 @@ def edit_profile(request,edit):
             profile.photo = form.cleaned_data['photo']
             profile.first_name = form.cleaned_data['first_name']
             profile.last_name = form.cleaned_data['last_name']
+            profile.phone_number = form.cleaned_data['phone_number']
             profile.user=current_user
             
             profile.save()
