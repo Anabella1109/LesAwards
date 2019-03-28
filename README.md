@@ -16,8 +16,8 @@ These instructions will get you a copy of the project up and running on your loc
 #### Cloning
  * In your terminal<br>
  ```
-   $ git clone https://github.com/Anabella1109/MyGram.git
-   $ cd MyGram
+   $ git clone https://github.com/Anabella1109/LesAwards.git
+   $ cd LesAwards
 ```
 
 #### Activate virtual environment
@@ -36,20 +36,20 @@ Install dependancies that will create an environment for the app to run
 #### Create Database
 ```
 $ psql
-CREATE DATABASE mygram
+CREATE DATABASE lesawards
 ```
 #### .env file
 Create .env file and paste paste the following filling where appropriate:
 
 SECRET_KEY = '<Secret_key>'<br>
-DBNAME = 'mygram'<br>
+DBNAME = 'lesawards'<br>
 USER = '&lt;Username&gt;'<br>
 PASSWORD = '&lt;password&gt;'<br>
 DEBUG = True 
 
  #### Run initial Migrations
 ```
-$ python manage.py makemigrations mygram 
+$ python manage.py makemigrations lewawards
 $ python3.6 manage.py migrate
 ```
 
@@ -61,7 +61,7 @@ $ python3.6 manage.py runserver
 ## Running the tests
 
 ```
-$ python3.6 manage.py test mygram
+$ python3.6 manage.py test lewawards
 ```
 
 
