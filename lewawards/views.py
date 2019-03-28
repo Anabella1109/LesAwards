@@ -3,6 +3,7 @@ from django.http  import HttpResponse,Http404,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .forms import NewCommentForm, Profileform
 from .models import Profile
+from django.contrib.auth.models import User
 
 def home(request):
     return render(request,'projects/home.html')
@@ -15,7 +16,7 @@ def profile(request,id):
     #  following1=following(user)
     #  followers1=followers(profile)
     
-     return render(request, 'grams/profile.html',{"user":user,"profile": profile})
+     return render(request, 'projects/profile.html',{"user":user,"profile": profile})
      
 @login_required(login_url='/accounts/login/')
 def edit_profile(request,edit):
@@ -29,6 +30,8 @@ def edit_profile(request,edit):
             
             profile.bio=form.cleaned_data['bio']
             profile.photo = form.cleaned_data['photo']
+            profile.first_name = form.cleaned_data['first_name']
+            profile.last_name = form.cleaned_data['last_name']
             profile.user=current_user
             
             profile.save()
@@ -40,4 +43,3 @@ def edit_profile(request,edit):
 
 
 
-# Create your views here.

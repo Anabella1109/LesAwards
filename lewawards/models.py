@@ -8,9 +8,9 @@ class Profile(models.Model):
     photo=models.ImageField(upload_to='images/',default='images/avatar.jpg')
     bio=models.TextField()
     user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
-    # first_name=models.CharField(max_length=100,null=True)
-    # last_name=models.CharField(max_length=100,null=True)
-    # phone_number=models.IntegerField(null=True)
+    first_name=models.CharField(max_length=100,null=True)
+    last_name=models.CharField(max_length=100,null=True)
+    phone_number=models.IntegerField(null=True)
 
 
 @receiver(post_save, sender=User)

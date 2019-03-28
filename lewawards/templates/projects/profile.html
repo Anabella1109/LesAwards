@@ -1,0 +1,37 @@
+{%extends 'projects/base.html'%}
+
+
+ {% block content %}
+ {{block.super}}
+ <div class="container">
+
+<div class="col-md-6">
+  <img src="{{profile.photo.url}}" alt="" height='200' width='100' id='dp'>
+ </div>
+ <div class="col-md-6">
+   <div class="row">
+    <p>First name:{{user.profile.first_name}}</p>
+    <p>Last name:{{user.profile.last_name}}</p>
+    <p>Email:{{user.email}}</p>
+<p>{{user.profile.bio}}</p>
+<div class="row">
+<!-- <p class='col-md-4'>{{images|length}} posts</p> -->
+<!-- <a href="/followers/{{profile.id}}" class='col-md-4' style="color:black;"> <p>{{followers|length}} followers</p></a>
+<a href="/following/{{user.id}}" style="color:black;"><p class='col-md-4'>{{following|length}} following</p></a> -->
+</div>
+</div>
+<div id='posts'>
+
+  <!-- {% for post in images %}
+  
+  <div class="col-md-4">
+  <a href="/post/{{post.id}}"> <img src="{{post.image.url}}" alt="" height="350"></a>
+</div>
+{%empty%}
+<h1>No posts yet</h1>
+{% endfor %} -->
+</div>
+  </div>
+
+
+ {% endblock %}
