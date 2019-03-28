@@ -6,7 +6,8 @@ from .models import Profile, Project
 from django.contrib.auth.models import User
 
 def home(request):
-    return render(request,'projects/home.html')
+    projects=Project.objects.all()
+    return render(request,'projects/home.html', {'projects':projects})
 
 @login_required(login_url='/accounts/login/')
 def profile(request,id):

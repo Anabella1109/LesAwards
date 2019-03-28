@@ -3,7 +3,12 @@
 {% block content %}
 {{block.super}}
 <p>
-  kkkkkkkkkkkkkk
+ {%for proj in projects %}
+   <p>{{proj.name}}</p>
+  <a href="{{proj.url}}"></a> <img src="{{proj.screenshot.url}}" alt=""></a>
+   <p>{{proj.description}}</p>
+
+ {%endfor%}
 </p>
 {% endblock %}
 
