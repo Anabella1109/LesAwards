@@ -70,7 +70,7 @@ def grade_project(request,id):
             grade.user = current_user
             grade.project=project
             grade.total=form.cleaned_data['design']+form.cleaned_data['content']+form.cleaned_data['usability']
-            project.save()
+            grade.save()
         return redirect('home')
 
      else:
@@ -79,6 +79,14 @@ def grade_project(request,id):
 
 
 
+@login_required(login_url='/accounts/login/')
+def project(request,id):
 
+    try:
+        project = Project.objects.get(id = id)
+    except DoesNotExist:
+        raise Http404()
+    grades =Grade.objects.filter(project=project)
+    return render(request,"projects/project.html", {"project":project,'grades':grades})
 
 

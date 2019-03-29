@@ -7,7 +7,7 @@ urlpatterns=[
    
     url('^$',views.home,name='home'),
     url(r'^new/project$', views.new_project, name='new-project'),
-    # url(r'^post/(\d+)',views.post,name ='post') ,
+    url(r'^project/(\d+)',views.project,name ='project') ,
     # url(r'^like_home/(\d+)',views.like_home,name ='like1') ,
     # url(r'^like_post/(\d+)',views.like_post,name ='like2') ,
     # url(r'^new_comment/(\d+)',views.add_comment,name ='comment') ,
