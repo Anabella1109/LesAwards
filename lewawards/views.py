@@ -83,19 +83,32 @@ def grade_project(request,id):
 
 @login_required(login_url='/accounts/login/')
 def project(request,id):
-    total1=0
+    total=0
+    total_design=0
+    total_usability=0
+    total_content=0
+    total_avg=0
+
+    
     try:
         project = Project.objects.get(id = id)
     except DoesNotExist:
         raise Http404()
     grades =Grade.objects.filter(project=project)
     n=len(grades)
+    
     for grade in grades:
-         total1+=grade.avg
+         total_design+=grade.design/n
+         total_usability+=grade.usability/n
+         total_content=grade.content/n
+         total=total_content+ total_design+ total_usability/n
+         total_avg+=grade.avg
+
+
+         avg=total_avg/n
          
-    project.overall_grade=total1/n
-    project.save
-    return render(request,"projects/project.html", {"project":project,'grades':grades, 'n':n})
+   
+    return render(request,"projects/project.html", {"project":project,'grades':grades, 'n':n,'total_design':total_design,'total_usability':total_usability,'total_content':total_content,'total':total,'final':avg})
 
 
 def search_results(request):
