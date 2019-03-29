@@ -129,6 +129,8 @@ STATICFILES_DIRS = [
 ]
 
 
+LOGIN_REDIRECT_URL='home'
+
 
 
 MEDIA_URL = '/media/'

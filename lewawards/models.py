@@ -24,8 +24,9 @@ class Project(models.Model):
       screenshot=models.ImageField(upload_to='projects/',default='images/avatar.jpg')
       description=models.TextField(null=True)
       url=models.TextField(null=True)
-      user=models.OneToOneField(User,on_delete=models.CASCADE,null=True,unique=False)
+      user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,unique=False)
       overall_grade=models.IntegerField(null=True)
+      
 
       @classmethod
       def search_by_name(cls,search_term):
@@ -36,7 +37,7 @@ class Grade(models.Model):
       design=models.IntegerField()
       usability=models.IntegerField()
       content=models.IntegerField()
-      user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
+      user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
       project=models.ForeignKey(Project)
       total=models.IntegerField()
       avg=models.IntegerField(null=True)
