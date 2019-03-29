@@ -2,17 +2,18 @@
 
  {% block content %}
 <div style="background-image:url('{{project.screenshot.url}}');height: 600px;background-size: cover;background-blend-mode:overlay;">
-  <a href="/grade/{{project.id}}" style="float:right;"><button>Grade</button></a>
+  <a href="/grade/{{project.id}}" style="float:right;"><button class="btn btn-lg" style="background-color:rgb(125, 169, 197);">Vote</button></a>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#votes" style="background-color:rgb(125, 169, 197);">Judges votes</button>
     <div class="container">
       <h1 class="text-center" style="padding-top: 10%">{{project.name}}</h1>
         <h3 class="tect-center" style="padding-left:40%;">From {{project.user.username}} with {{project.overall_grade}}</h3>
         </div>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#votes">Judges votes</button>
+       
         <div class="container jj">
             <div class="filterDiv cars">Design {{total_design}}</div>
             <div class="filterDiv colors fruits">Usability {{total_usability}}</div>
             <div class="filterDiv cars">Content {{total_content}}</div>
-            <div class="filterDiv colors">Total {{total}}</div>
+            <!-- <div class="filterDiv colors">Total {{total}}</div> -->
             <div class="filterDiv cars animals">Average: {{final}}</div>
            
            
@@ -30,9 +31,14 @@
         <h4 class="modal-title">Votes</h4>
       </div>
       <div class="modal-body">
+        <div class="row" style="border-bottom:3px dashed black;">
+          <p class="col-md-2"> Name</p>  <p class="col-md-2"> Design</p>  <p class="col-md-2">Usability</p>  <p class="col-md-2">Content</p>  <p class="col-md-2">Average</p>
+        </div>
         {%for grade in grades%}
-        <p class="col-md-2">{{grade.user.username}}</p>  <p class="col-md-2">{{grade.design}}</p>  <p class="col-md-2">{{grade.usability}}</p>  <p class="col-md-2"></p>  <p class="col-md-2">{{grade.content}}</p>
+        <div class="row" style="border-bottom:1px solid black; padding-top:1px;">
+        <p class="col-md-2">{{grade.user.username}}</p>  <p class="col-md-2">{{grade.design}}</p>  <p class="col-md-2">{{grade.usability}}</p>    <p class="col-md-2">{{grade.content}}</p>
         <p class="col-md-2">{{grade.avg}}</p>
+        </div>
         {%endfor%}
         <p></p>
       </div>
@@ -43,6 +49,21 @@
 
   </div>
 </div>  
+</div>
+
+<div>
+  <h2 class="text-center">Other projects</h2>
+  {%for proj in projects %}
+
+   <div class="col-md-4" style="background-color:grey; padding-left:7%;" >
+    <div style="">
+   <p>{{proj.name}}</p>
+  <a href="/project/{{proj.id}}"> <img src="{{proj.screenshot.url}}" alt="" height="200"></a>
+   <p>{{proj.description}}</p>
+   <a href="/grade/{{proj.id}}"> <button>Grade</button> </a>
+  </div>
+</div>
+ {%endfor%}
 </div>
 
  {% endblock %}

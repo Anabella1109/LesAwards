@@ -83,11 +83,14 @@ def grade_project(request,id):
 
 @login_required(login_url='/accounts/login/')
 def project(request,id):
+    projects=Project.objects.all()
+    avg=0
     total=0
     total_design=0
     total_usability=0
     total_content=0
     total_avg=0
+  
 
     
     try:
@@ -101,14 +104,16 @@ def project(request,id):
          total_design+=grade.design/n
          total_usability+=grade.usability/n
          total_content=grade.content/n
-         total=total_content+ total_design+ total_usability/n
-         total_avg+=grade.avg
+         total=(total_content+ total_design+ total_usability)
+         total_avg+=grade.avg/n
 
 
-         avg=total_avg/n
-         
+         avg=total/n
+         project.overall_grade=avg
+    project.save()
+        
    
-    return render(request,"projects/project.html", {"project":project,'grades':grades, 'n':n,'total_design':total_design,'total_usability':total_usability,'total_content':total_content,'total':total,'final':avg})
+    return render(request,"projects/project.html", {"project":project,'grades':grades, 'n':n,'total_design':total_design,'total_usability':total_usability,'total_content':total_content,'total':total,'final':avg,'projects':projects})
 
 
 def search_results(request):
