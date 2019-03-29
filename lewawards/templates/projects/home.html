@@ -2,14 +2,17 @@
 
 {% block content %}
 {{block.super}}
-<p>
- {%for proj in projects %}
-   <p>{{proj.name}}</p>
-  <a href="{{proj.url}}"></a> <img src="{{proj.screenshot.url}}" alt=""></a>
-   <p>{{proj.description}}</p>
 
+
+ {%for proj in projects %}
+ <div class="container">
+   <p>{{proj.name}}</p>
+  <a href="{{proj.url}}"> <img src="{{proj.screenshot.url}}" alt="" height="200"></a>
+   <p>{{proj.description}}</p>
+  </div>
  {%endfor%}
-</p>
+
+
 {% endblock %}
 
 

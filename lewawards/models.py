@@ -25,4 +25,12 @@ class Project(models.Model):
       description=models.TextField(null=True)
       url=models.TextField(null=True)
       user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
-# Create your models here.
+
+class Grade(models.Model):
+      design=models.IntegerField()
+      usability=models.IntegerField()
+      content=models.IntegerField()
+      user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
+      project=models.ForeignKey(Project)
+      total=models.IntegerField()
+
