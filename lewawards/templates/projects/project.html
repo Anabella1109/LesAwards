@@ -1,0 +1,28 @@
+{%extends 'projects/base.html'%}
+
+ {% block content %}
+
+ <div class="container">
+
+   <div class="row">
+     <img src="{{project.screenshot.url}}"  class="img-responsive" alt="">
+   </div>
+
+   <div class="row">
+     <h1 class="text-center">{{project.name}}</h1>
+   </div>
+
+   <div class="row">
+    <p>{{project.description}}</p>
+   </div>
+
+   <div class="row">
+     <p>Design: {{project.grade.design}} </p>
+     <p>Usability: {{project.grade.usability}} </p>
+     <p>Content: {{project.grade.content}} </p>
+     <p>Total: {{project.grade.total}} </p>
+   </div>
+
+ </div>
+
+ {% endblock %}
