@@ -16,6 +16,7 @@
   {% if projects %}
     {% for article in projects %}
       <div class="col-sm-6 col-md-3">
+        <p>{{article.name}}</p>
          <a href="/project/{{article.id}}"> <img src="{{article.screenshot.url}}" alt="" height="200"></a>
       </div>
     {% endfor %}

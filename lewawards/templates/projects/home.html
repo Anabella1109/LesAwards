@@ -4,7 +4,12 @@
 {{block.super}}
 
 
+<div id="top">
+<h1 class="text-center">WELCOME</h1>
+</div>
+
  {%for proj in projects %}
+ 
  <div class="container">
    <p>{{proj.name}}</p>
   <a href="/project/{{proj.id}}"> <img src="{{proj.screenshot.url}}" alt="" height="200"></a>

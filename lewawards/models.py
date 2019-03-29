@@ -24,7 +24,7 @@ class Project(models.Model):
       screenshot=models.ImageField(upload_to='projects/',default='images/avatar.jpg')
       description=models.TextField(null=True)
       url=models.TextField(null=True)
-      user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
+      user=models.OneToOneField(User,on_delete=models.CASCADE,null=True,unique=False)
       overall_grade=models.IntegerField(null=True)
 
       @classmethod

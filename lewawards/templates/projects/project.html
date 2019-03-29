@@ -1,42 +1,22 @@
 {%extends 'projects/base.html'%}
 
  {% block content %}
-
- <div class="container">
-<div>
-  <div>
-    <img src="{{project.user.profile.photo.url}}" alt="" height="100" width="100">
-  </div>
-  <div>
-<p>{{project.user.username}}</p>
-  </div>
+<div style="background-image:url('{{project.screenshot.url}}');height: 600px;background-size: cover;background-blend-mode:overlay;">
+    <div class="container">
+      <h1 class="text-center" style="padding-top: 10%">{{project.name}}</h1>
+        <h3 class="tect-center" style="padding-left:40%;">From {{project.user.username}} with {{project.overall_grade}}</h3>
+        </div>
+        
+        <div class="container jj">
+            <div class="filterDiv cars">Design 5</div>
+            <div class="filterDiv colors fruits">Usability 8</div>
+            <div class="filterDiv cars">Content 10</div>
+            <div class="filterDiv colors">Total 23</div>
+            <div class="filterDiv cars animals">Average: 7.8 </div>
+           
+           
+          </div>  
+            
 </div>
-   <div class="row">
-     <img src="{{project.screenshot.url}}"  class="img-responsive" alt="">
-   </div>
-
-   <div class="row">
-     <h1 class="text-center">{{project.name}}</h1>
-   </div>
-
-   <div class="row">
-    <p>{{project.description}}</p>
-   </div>
-   <p>Overall: {{project.overall_grade}}</p>
-   <a href="{{project.url}}" target="_blank"><button>Visit site</button></a>
-  {% for grade in grades %}
-   <p>{{grade.user.username}}</p>
-   <div class="row">
-     <p>Design: {{grade.design}} </p>
-     <p>Usability: {{grade.usability}} </p>
-     <p>Content: {{grade.content}} </p>
-     <p>Total: {{grade.total}} </p>
-     <p>Average: {{grade.avg}} </p>
-    <p>{{n}}</p>
-   </div>
-   {% empty %}
-   <p>fff</p>
-{%endfor%}
- </div>
 
  {% endblock %}
