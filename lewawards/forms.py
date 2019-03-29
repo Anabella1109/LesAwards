@@ -1,4 +1,4 @@
-from .models import  Profile, Project
+from .models import  Profile, Project, Grade
 from django import forms
 
 
@@ -15,3 +15,8 @@ class Projectform(forms.ModelForm):
      class Meta:
          model= Project
          exclude = ['user']
+
+class Gradeform(forms.ModelForm):
+     class Meta:
+         model= Grade
+         exclude = ['user','project']

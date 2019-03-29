@@ -33,4 +33,5 @@ class Grade(models.Model):
       user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
       project=models.ForeignKey(Project)
       total=models.IntegerField()
+      comment=models.TextField(null=True)
 

@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse,Http404,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .forms import NewCommentForm, Profileform, Projectform
-from .models import Profile, Project
+from .forms import NewCommentForm, Profileform, Projectform, Gradeform
+from .models import Profile, Project, Grade
 from django.contrib.auth.models import User
 
 def home(request):
@@ -58,6 +58,12 @@ def new_project(request):
     else:
         form = Projectform()
     return render(request, 'new_project.html', {"form": form})
+
+@login_required(login_url='/accounts/login/')
+def grade_project(request,id):
+     project=Project.objects.get(id=id)
+
+
 
 
 
