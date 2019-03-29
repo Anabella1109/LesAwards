@@ -25,6 +25,7 @@ class Project(models.Model):
       description=models.TextField(null=True)
       url=models.TextField(null=True)
       user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
+      overall_grade=models.IntegerField(null=True)
 
 class Grade(models.Model):
       design=models.IntegerField()
