@@ -3,7 +3,14 @@
  {% block content %}
 
  <div class="container">
-
+<div>
+  <div>
+    <img src="{{project.user.profile.photo.url}}" alt="" height="100" width="100">
+  </div>
+  <div>
+<p>{{project.user.username}}</p>
+  </div>
+</div>
    <div class="row">
      <img src="{{project.screenshot.url}}"  class="img-responsive" alt="">
    </div>
@@ -15,6 +22,7 @@
    <div class="row">
     <p>{{project.description}}</p>
    </div>
+   <p>Overall: {{project.overall_grade}}</p>
    <a href="{{project.url}}" target="_blank"><button>Visit site</button></a>
   {% for grade in grades %}
    <p>{{grade.user.username}}</p>
@@ -24,6 +32,7 @@
      <p>Content: {{grade.content}} </p>
      <p>Total: {{grade.total}} </p>
      <p>Average: {{grade.avg}} </p>
+    <p>{{n}}</p>
    </div>
    {% empty %}
    <p>fff</p>

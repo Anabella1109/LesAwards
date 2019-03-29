@@ -27,6 +27,11 @@ class Project(models.Model):
       user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
       overall_grade=models.IntegerField(null=True)
 
+      @classmethod
+      def search_by_name(cls,search_term):
+        projects = cls.objects.filter(name__icontains=search_term)
+        return projects
+
 class Grade(models.Model):
       design=models.IntegerField()
       usability=models.IntegerField()
