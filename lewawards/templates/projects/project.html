@@ -2,11 +2,12 @@
 
  {% block content %}
 <div style="background-image:url('{{project.screenshot.url}}');height: 600px;background-size: cover;background-blend-mode:overlay;">
+  <a href="/grade/{{project.id}}" style="float:right;"><button>Grade</button></a>
     <div class="container">
       <h1 class="text-center" style="padding-top: 10%">{{project.name}}</h1>
         <h3 class="tect-center" style="padding-left:40%;">From {{project.user.username}} with {{project.overall_grade}}</h3>
         </div>
-        
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#votes">Judges votes</button>
         <div class="container jj">
             <div class="filterDiv cars">Design 5</div>
             <div class="filterDiv colors fruits">Usability 8</div>
@@ -16,7 +17,32 @@
            
            
           </div>  
-            
+         
+
+<!-- Modal -->
+<div id="votes" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Votes</h4>
+      </div>
+      <div class="modal-body">
+        {%for grade in grades%}
+        <p class="col-md-2">{{grade.user.username}}</p>  <p class="col-md-2">{{grade.design}}</p>  <p class="col-md-2">{{grade.usability}}</p>  <p class="col-md-2"></p>  <p class="col-md-2">{{grade.content}}</p>
+        <p class="col-md-2">{{grade.avg}}</p>
+        {%endfor%}
+        <p></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>  
 </div>
 
  {% endblock %}

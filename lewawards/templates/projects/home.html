@@ -9,13 +9,14 @@
 </div>
 
  {%for proj in projects %}
- 
- <div class="container">
+
+   <div class="col-md-4">
    <p>{{proj.name}}</p>
   <a href="/project/{{proj.id}}"> <img src="{{proj.screenshot.url}}" alt="" height="200"></a>
    <p>{{proj.description}}</p>
    <a href="/grade/{{proj.id}}"> <button>Grade</button> </a>
   </div>
+
  {%endfor%}
 
 
