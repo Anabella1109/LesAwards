@@ -17,11 +17,13 @@
    </div>
    <a href="{{project.url}}" target="_blank"><button>Visit site</button></a>
   {% for grade in grades %}
+   <p>{{grade.user.username}}</p>
    <div class="row">
      <p>Design: {{grade.design}} </p>
      <p>Usability: {{grade.usability}} </p>
      <p>Content: {{grade.content}} </p>
      <p>Total: {{grade.total}} </p>
+     <p>Average: {{grade.avg}} </p>
    </div>
    {% empty %}
    <p>fff</p>

@@ -63,6 +63,7 @@ def new_project(request):
 def grade_project(request,id):
      current_user=request.user
      project=Project.objects.get(id=id)
+    #  grade=Grade.objects.get(user=current_user)
      if request.method == 'POST':
         form = Gradeform(request.POST, request.FILES)
         if form.is_valid():
@@ -70,6 +71,7 @@ def grade_project(request,id):
             grade.user = current_user
             grade.project=project
             grade.total=form.cleaned_data['design']+form.cleaned_data['content']+form.cleaned_data['usability']
+            grade.avg= grade.total/3
             grade.save()
         return redirect('home')
 
