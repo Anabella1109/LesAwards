@@ -61,7 +61,21 @@ def new_project(request):
 
 @login_required(login_url='/accounts/login/')
 def grade_project(request,id):
+     current_user=request.user
      project=Project.objects.get(id=id)
+     if request.method == 'POST':
+        form = Gradeform(request.POST, request.FILES)
+        if form.is_valid():
+            grade = form.save(commit=False)
+            grade.user = current_user
+            grade.project=project
+            grade.total=form.cleaned_data['design']+form.cleaned_data['content']+form.cleaned_data['usability']
+            project.save()
+        return redirect('home')
+
+     else:
+        form = Gradeform()
+     return render(request, 'new_grade.html', {"form": form, 'proj':project})
 
 
 

@@ -19,4 +19,4 @@ class Projectform(forms.ModelForm):
 class Gradeform(forms.ModelForm):
      class Meta:
          model= Grade
-         exclude = ['user','project']
+         exclude = ['user','project','total']
