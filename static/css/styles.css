@@ -1,6 +1,7 @@
 #top{
   background-image: url('https://images.pexels.com/photos/889087/pexels-photo-889087.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
   height:500px;
+  width: 100%;
 }
 #top h1{
   padding-top:15%;

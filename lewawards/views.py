@@ -4,6 +4,11 @@ from django.contrib.auth.decorators import login_required
 from .forms import NewCommentForm, Profileform, Projectform, Gradeform
 from .models import Profile, Project, Grade
 from django.contrib.auth.models import User
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ProfileSerializer
+from rest_framework import status
+from .permissions import IsAdminOrReadOnly
 
 def home(request):
     projects=Project.objects.all()
@@ -71,7 +76,7 @@ def grade_project(request,id):
             grade.user = current_user
             grade.project=project
             grade.total=form.cleaned_data['design']+form.cleaned_data['content']+form.cleaned_data['usability']
-            grade.avg= grade.total/3
+            grade.avg= int(grade.total)/3
             grade.save()
         return redirect('home')
 
@@ -101,14 +106,14 @@ def project(request,id):
     n=len(grades)
     
     for grade in grades:
-         total_design+=grade.design/n
-         total_usability+=grade.usability/n
-         total_content=grade.content/n
-         total=(total_content+ total_design+ total_usability)
+         total_design+=round(grade.design/n,2)
+         total_usability+=round(grade.usability/n,2)
+         total_content=round(grade.content/n,2)
+         total=round((total_content+ total_design+ total_usability),2)
          total_avg+=grade.avg/n
 
 
-         avg=total/n
+         avg=round(total/n,2)
          project.overall_grade=avg
     project.save()
         
@@ -128,3 +133,47 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
+
+
+class ProfileList(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+    def get(self, request, format=None):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles, many=True)
+        return Response(serializers.data)
+    def post(self, request, format=None):
+        serializers = ProfileSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class ProfileDescription(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+    def get_profile(self, pk):
+        try:
+            return Profile.objects.get(pk=pk)
+        except Profile.DoesNotExist:
+            return Http404
+
+    def get(self, request, pk, format=None):
+        profile = self.get_profile(pk)
+        serializers = ProfileSerializer(profile)
+        return Response(serializers.data)
+
+    def put(self, request, pk, format=None):
+        profile = self.get_profile(pk)
+        serializers = ProfileSerializer(profile, request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data)
+        else:
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+    def delete(self, request, pk, format=None):
+        profile = self.get_profile(pk)
+        profile.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
