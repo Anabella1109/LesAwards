@@ -14,25 +14,35 @@
     <p>Last name:{{user.profile.last_name}}</p>
     <p>Phone number:0{{user.profile.phone_number}}</p>
     <p>Email:{{user.email}}</p>
-<p>{{user.profile.bio}}</p>
+<p>Bio:{{user.profile.bio}}</p>
 <div class="row">
-<!-- <p class='col-md-4'>{{images|length}} posts</p> -->
-<!-- <a href="/followers/{{profile.id}}" class='col-md-4' style="color:black;"> <p>{{followers|length}} followers</p></a>
-<a href="/following/{{user.id}}" style="color:black;"><p class='col-md-4'>{{following|length}} following</p></a> -->
-</div>
-</div>
-<div id='posts'>
+<p class='col-md-4'>Added:{{projects|length}} projects</p>
 
-  <!-- {% for post in images %}
-  
-  <div class="col-md-4">
-  <a href="/post/{{post.id}}"> <img src="{{post.image.url}}" alt="" height="350"></a>
 </div>
-{%empty%}
-<h1>No posts yet</h1>
-{% endfor %} -->
-</div>
-  </div>
 
 
+
+   
+ 
+</div>
+
+ {%for proj in projects %}
+
+    <div class="" >
+      <div class="panel">
+     <div>
+    <p class="panel panel-heading">{{proj.name}}</p>
+    <div class="panel panel-body">
+   <a href="/project/{{proj.id}}" > <img src="{{proj.screenshot.url}}" alt="" height="250" id="img" ></a>
+    <p>{{proj.description}}</p>
+   </div>
+    <a href="/grade/{{proj.id}}" class="panel panel-footer"> <button>Grade</button> </a>
+   </div>
+   </div>
+ </div>
+ {%empty%}
+ <h2>No projects yet</h2>
+ 
+  {%endfor%}
+</div>
  {% endblock %}

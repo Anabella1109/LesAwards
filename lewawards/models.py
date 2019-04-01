@@ -11,6 +11,7 @@ class Profile(models.Model):
     first_name=models.CharField(max_length=100,null=True)
     last_name=models.CharField(max_length=100,null=True)
     phone_number=models.IntegerField(null=True)
+    country=models.CharField(max_length=100,default='unknown',null=True)
     
 
     def save_profile(self):

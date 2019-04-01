@@ -6,15 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom:2px solid black;margin-bottom:0;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom:2px solid black;margin-bottom:0;padding-bottom: 15px;">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand text-center" href="{% url 'home' %}" style="font-family: billabong;font-size:40px;color:black;">Les Awards</a>
+       
+      <a class="navbar-brand" href="{% url 'home' %}" style="font-family: 'Mrs Sheppards', cursive;font-size:40px;color:black;"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQH9UxfrcOFohhpsd0KZKC3dh-mKRGbsaBZ6ERLa4DV8AszSo_" width="20" height="20" class="d-inline-block align-top" alt=""> Les Awards</a>
     </div>
     
-      <div class="col-sm-4 col-md-4 navbar-right">
+      <div class="col-sm-4 col-md-4 navbar-right" >
 
-        <form class="navbar-form" role="search" action="{% url 'search_results' %}">
+        <form class="navbar-form" role="search" action="{% url 'search_results' %}"  style="margin-left:15%;">
   
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search Project" name="project">
@@ -24,47 +25,37 @@
           </div>
   
         </form>
+
+       
+        
       </div>
- 
-    <div class="d-block">
-        {% if user.is_authenticated %}
-        <div >
-            <a href="{%url 'profile' user.id %}" class="d-block"><i class="glyphicon glyphicon-user" style="color:black;"></i></a>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="/accounts/register">Register/login</a>
+            <a href="#">Collections</a>
+            <a href="#">Contact</a>
+            {% if user.is_authenticated %}
+            <a href="{%url 'profile' user.id %}" class="d-block">View Profile</a>
+            <a href="{%url 'edit_profile' user.id %}">Edit Profile</a>
+            <a href="{%url 'new-project'%}">Add Project</a>
+            <a href="/accounts/password/change">Change Password</a>
+            <a href="/logout">Logout</a>
+            {% else %}
+            <li>
+              <a class='btn btn-default' href="/accounts/login">Login</a>
+            </li>
+            {%endif%}
+          </div>
+          <div style="margin-top:1%;font-size: 200%;">
+          <!-- Use any element to open the sidenav -->
+          <span onclick="openNav()">| <i class="glyphicon glyphicon-menu-hamburger"></i> Menu</span>
+        </div>
+          <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
           
-
-        <ul>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" class="d-inline"><i class="glyphicon glyphicon-option-vertical" style="color:black;margin-top:10px;margin-right: 5px;"></i>
-                      
-                  </a>
-            <ul class="dropdown-menu" role="menu">
-              <li>
-                <a href="{%url 'home'%}">Home</a>
-              </li>
-
-                <li>
-                    <a href="{%url 'edit_profile' user.id %}">Edit Profile</a>
-                  </li>
-              <li>
-                <a href="{%url 'new-project'%}">Add Project</a>
-              </li>
-              <li>
-                <a href="/accounts/password/change">Change Password</a>
-              </li>
-              <li>
-                <a href="/logout">Logout</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        {% else %}
-        <li>
-          <a class='btn btn-default' href="/accounts/login">Login</a>
-        </li>
-  
-        {% endif %}
-      </div>
-    </div>
+     
+ 
+   
     </div>
     
   </div>

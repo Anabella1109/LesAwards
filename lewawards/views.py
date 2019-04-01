@@ -18,11 +18,11 @@ def home(request):
 def profile(request,id):
      user=User.objects.get(id=id)
      profile=Profile.objects.get(user=user)
-    #  images=Image.objects.filter(user=user)
+     projects=Project.objects.filter(user=user)
     #  following1=following(user)
     #  followers1=followers(profile)
     
-     return render(request, 'projects/profile.html',{"user":user,"profile": profile})
+     return render(request, 'projects/profile.html',{"user":user,"profile": profile,'projects':projects})
      
 @login_required(login_url='/accounts/login/')
 def edit_profile(request,edit):
@@ -75,7 +75,7 @@ def grade_project(request,id):
             grade = form.save(commit=False)
             grade.user = current_user
             grade.project=project
-            grade.total=form.cleaned_data['design']+form.cleaned_data['content']+form.cleaned_data['usability']
+            grade.total=int(form.cleaned_data['design'])+int(form.cleaned_data['content'])+int(form.cleaned_data['usability'])
             grade.avg= int(grade.total)/3
             grade.save()
         return redirect('home')
@@ -108,12 +108,13 @@ def project(request,id):
     for grade in grades:
          total_design+=round(grade.design/n,2)
          total_usability+=round(grade.usability/n,2)
-         total_content=round(grade.content/n,2)
-         total=round((total_content+ total_design+ total_usability),2)
-         total_avg+=grade.avg/n
+         total_content += round(grade.content/n,2)
+         total=(total_content+ total_design+ total_usability)
+         total_avg+=round((grade.avg/n)/3,2)
 
 
          avg=round(total/n,2)
+        #  round(total/n,2)
          project.overall_grade=avg
     project.save()
         
