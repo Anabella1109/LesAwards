@@ -11,7 +11,17 @@ class Profile(models.Model):
     first_name=models.CharField(max_length=100,null=True)
     last_name=models.CharField(max_length=100,null=True)
     phone_number=models.IntegerField(null=True)
+    
 
+    def save_profile(self):
+        self.save()
+    def delete_profile(self):
+       self.delete()
+
+    def update_bio(self,bio):
+         self.bio=bio
+         self.save()
+   
 
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
@@ -33,6 +43,17 @@ class Project(models.Model):
         projects = cls.objects.filter(name__icontains=search_term)
         return projects
 
+      def save_project(self):
+         self.save()
+
+      def delete_project(self):
+        self.delete()
+       
+      def update_description(self,cap):
+         self.description=cap
+         self.save()
+
+
 class Grade(models.Model):
       design=models.IntegerField()
       usability=models.IntegerField()
@@ -42,4 +63,13 @@ class Grade(models.Model):
       total=models.IntegerField()
       avg=models.IntegerField(null=True)
       comment=models.TextField(null=True)
+
+      def save_grade(self):
+         self.save()
+      def delete_grade(self):
+         self.delete()
+
+      def update_comment(self,comment):
+         self.comment=comment
+         self.save()
 
