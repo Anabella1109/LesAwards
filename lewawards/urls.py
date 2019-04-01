@@ -18,7 +18,10 @@ urlpatterns=[
     url(r'^grade/(\d+)',views.grade_project,name ='grade') ,
      url(r'^api/profiles/$', views.ProfileList.as_view()),
      url(r'api/profile/profile-id/(?P<pk>[0-9]+)/$',
-        views.ProfileDescription.as_view())
+        views.ProfileDescription.as_view()),
+    url(r'^api/projects/$', views.ProjectList.as_view()),
+    url(r'api/project/project-id/(?P<pk>[0-9]+)/$',
+        views.ProjectDescription.as_view()),
     # url(r'^unfollow/(\d+)',views.unfollow_profile,name ='follow') ,
     # url(r'^followers/(\d+)',views.who_followers,name ='followers') ,   
     # url(r'^following/(\d+)',views.who_following,name ='following') , 
